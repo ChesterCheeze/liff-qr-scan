@@ -54,7 +54,7 @@ function LIFFPage() {
     data.survey_id = surveyData.id;
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/submission', {
+      const response = await fetch('http://127.0.0.1:8000/api/survey/response', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ function LIFFPage() {
         </button>
       </div>
       {qrScanned && (<div className="container mx-auto bg-gray-200 p-4 rounded">
-        <form className="mt-4">
+        <form className="mt-4" onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-4">{surveyData.name}</h2>
           <p className="mb-4">{surveyData.description}</p>
           {surveyData.questions.map((item) => (
@@ -138,7 +138,6 @@ function LIFFPage() {
       </div>)}
       <div className="container mx-auto">
         <button
-          onClick={handleSubmit}
           style={{
             backgroundColor: 'blue',
             color: 'white',
@@ -148,7 +147,7 @@ function LIFFPage() {
             border: 'none',
             cursor: 'pointer',
           }}
-        >
+        type='submit'>
           Submit
         </button>
       </div>
