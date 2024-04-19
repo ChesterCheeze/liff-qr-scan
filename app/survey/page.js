@@ -12,10 +12,9 @@ function LIFFPage() {
 
   useEffect(() => {
     liff.use(new LiffMockPlugin());
-
     async function initLIFF() {
       try {
-        await liff.init({ liffId: process.env.LIFF_ID, mock: true, });
+        await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID, mock: true });
         if (!liff.isLoggedIn()) {
           liff.login();
         }
@@ -36,7 +35,7 @@ function LIFFPage() {
     try {
       // const result = await liff.scanCode();
       // const response = await fetch(`${result}`);
-      const response = await fetch(`http://127.0.0.1:8000/api/survey/1`);
+      const response = await fetch(`http://127.0.0.1:8000/survey/1`);
       const data = await response.json();
       setSurveyData(data);
       setQrScanned(true);
